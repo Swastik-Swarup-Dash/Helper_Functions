@@ -309,3 +309,19 @@ def compare_historys(original_history, new_history, initial_epochs=5):
     plt.title('Training and Validation Loss')
     plt.xlabel('epoch')
     plt.show()
+
+
+
+
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+
+def calculate_results(y_true,y_pred):
+
+  model_accuracy = accuracy_score(y_true,y_pred)* 100
+  model_precision,model_recall,model_f1,__= precision_recall_fscore_support(y_true,y_pred,average="weighted")
+  model_results = {"accuracy": model_accuracy,
+                  "precision": model_precision,
+                  "recall": model_recall,
+                  "f1": model_f1}
+  
+  return model_results;
