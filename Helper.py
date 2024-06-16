@@ -325,3 +325,16 @@ def calculate_results(y_true,y_pred):
                   "f1": model_f1}
   
   return model_results;
+
+
+
+def predict_on_sentence(model, sentence):
+  """
+  Uses model to make a prediction on sentence.
+
+  Returns the sentence, the predicted label and the prediction probability.
+  """
+  pred_prob = model.predict([sentence])
+  pred_label = tf.squeeze(tf.round(pred_prob)).numpy()
+  print(f"Pred: {pred_label}", "(real disaster)" if pred_label > 0 else "(not real disaster)", f"Prob: {pred_prob[0][0]}")
+  print(f"Text:\n{sentence}")
